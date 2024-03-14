@@ -10,7 +10,7 @@ pub fn build(b: *std.Build) void {
     const zigwin32 = b.dependency(PACKAGE_NAME, .{
         .target = target,
         .optimization = optimization,
-    });
+    }).artifact(PACKAGE_NAME);
 
     b.installArtifact(zigwin32);
 }
