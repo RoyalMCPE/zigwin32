@@ -5,12 +5,11 @@ const PACKAGE_NAME = "zigwin32";
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
-    const optimization = b.standardOptimizeOption(.{});
+    const optimize = b.standardOptimizeOption(.{});
 
-    const zigwin32 = b.dependency(PACKAGE_NAME, .{
+    _ = b.addModule(PACKAGE_NAME, .{
+        .source_file = .{ .path = "win32.zig" },
+        .optimize = optimize,
         .target = target,
-        .optimization = optimization,
-    }).artifact(PACKAGE_NAME);
-
-    b.installArtifact(zigwin32);
+    });
 }
